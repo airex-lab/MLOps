@@ -1,0 +1,5 @@
+outs:
+- md5: 61a2cf05990ad46a14afdbf9fe8d56a3
+  size: 11466434
+  hash: md5
+  path: mnist_pca.csv
