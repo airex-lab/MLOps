@@ -2,8 +2,12 @@ FROM python:3.9
 
 WORKDIR /code
 
-RUN pip install fastapi "uvicorn[standard]"
-COPY ./main.py /code/main.py
+COPY ./requirements.txt /code/requirements.txt
+
+RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
+
+COPY ./src /code/src
+COPY ./api /code/api
 
 EXPOSE 8000
-CMD ["uvicorn",  "main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn",  "api.main:app", "--host", "0.0.0.0", "--port", "8000"]
