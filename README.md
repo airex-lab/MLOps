@@ -54,6 +54,52 @@ Project Organization
 
 <p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
 
+# Setting up the Project
+
+## Clone the repository
+
+``` shell
+git clone https://github.com/StarsCDS/MLOps.git
+```
+
+## Install dependencies
+
+- Create a virtual environment using `venv` (you can also use `conda` instead of this)
+``` shell
+python -m venv MLOps
+```
+
+- Install dependencies
+``` shell
+cd MLOps
+pip install -r requirements.txt
+```
+
+## Data Versioning with `dvc`
+
+- Pull the raw data (run `pip install dvc dvc-gdrive` if dvc command is not found)
+
+``` shell
+dvc pull
+```
+
+### Data versioning tips
+
+- Add new data/modifications to data
+``` shell
+dvc add <filepath>
+```
+
+- Push new data to remote
+``` shell
+dvc push
+```
+
+- Version control the `.dvc` file using `git`
+``` shell
+git add <filepath>.dvc
+```
+
 # Containerization using Docker
 
 - Build an image
