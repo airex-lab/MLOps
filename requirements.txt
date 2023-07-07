@@ -14,3 +14,9 @@ dvc-gdrive
 # api requirements
 fastapi
 uvicorn[standard]
+
+# others
+numpy
+matplotlib
+Pillow
+pickle
