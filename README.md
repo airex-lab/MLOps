@@ -127,6 +127,22 @@ python src/models/predict_model.py <image_path> models/mlp.keras
 python src/visualization/visualize.py models/mlp.keras
 ```
 
+# Mlflow
+
+- It is helpful for managing and monitoring machine learning experiments
+- `script.py` has the mlflow code
+- Experiments can be monitored by running the following commands (default: [https://localhost:5000](https://localhost:5000))
+``` shell
+python script.py
+mlflow ui
+```
+
+# Github Actions
+
+- It is helpful for automating all tasks related to code merging and deployment
+- The configuration file for the action that is run at every push to `main` branch is at `.github/workflows/python-app.yml`
+- It check for lint errors and runs unit tests before pushing code main branch and also on every pull request to the main branch
+
 # Containerization using Docker
 
 - Build an image
