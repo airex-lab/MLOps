@@ -1,0 +1,5 @@
+outs:
+- md5: 75362e213e043a1ec7a4f407764b47df
+  size: 1591766
+  hash: md5
+  path: mlp.keras
