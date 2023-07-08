@@ -41,6 +41,8 @@ def main(input_dirpath, output_filepath):
         ax[i // 4, i % 4].axis('off')
     plt.show()
 
+    Path(os.path.dirname(output_filepath)).mkdir(parents=True, exist_ok=True)
+
     with open(output_filepath, 'wb') as f:
         pickle.dump(data, f)
         print('data saved to %s' % output_filepath)

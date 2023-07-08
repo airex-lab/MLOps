@@ -20,3 +20,4 @@ numpy
 matplotlib
 Pillow
 pickle
+tensorflow

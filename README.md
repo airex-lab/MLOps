@@ -69,7 +69,7 @@ git clone https://github.com/StarsCDS/MLOps.git
 python -m venv MLOps
 ```
 
-- Install dependencies
+- Install dependencies (you can also manually install all the dependencies from requirements.txt)
 ``` shell
 cd MLOps
 pip install -r requirements.txt
@@ -98,6 +98,33 @@ dvc push
 - Version control the `.dvc` file using `git`
 ``` shell
 git add <filepath>.dvc
+```
+
+## Data Preprocessing
+
+- Unzip the raw data
+``` shell
+python src/data/make_dataset.py data/raw/natural_images.zip data/interim
+```
+
+- Process the unzipped data
+``` shell
+python src/features/build_features.py data/interim/natural_images data/processed/natural_images.pkl
+```
+
+- Train a model using the processed data
+``` shell
+python src/models/train_model.py data/processed/natural_images.pkl models/mlp.keras
+```
+
+- Predict an image using the trained model
+``` shell
+python src/models/predict_model.py <image_path> models/mlp.keras
+```
+
+- Visualize the trained model
+``` shell
+python src/visualization/visualize.py models/mlp.keras
 ```
 
 # Containerization using Docker
