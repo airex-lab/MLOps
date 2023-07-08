@@ -1,5 +1,5 @@
 # local package
--e .
+# -e .
 
 # external requirements
 click
@@ -20,5 +20,4 @@ uvicorn[standard]
 numpy
 matplotlib
 Pillow
-pickle
 tensorflow
