@@ -72,7 +72,7 @@ python -m venv MLOps
 - Install dependencies (you can also manually install all the dependencies from requirements.txt)
 ``` shell
 cd MLOps
-pip install -r requirements.txt
+make requirements
 ```
 
 ## Data Versioning with `dvc`
@@ -104,27 +104,27 @@ git add <filepath>.dvc
 
 - Unzip the raw data
 ``` shell
-python src/data/make_dataset.py data/raw/natural_images.zip data/interim
+make data
 ```
 
 - Process the unzipped data
 ``` shell
-python src/features/build_features.py data/interim/natural_images data/processed/natural_images.pkl
+make features
 ```
 
 - Train a model using the processed data
 ``` shell
-python src/models/train_model.py data/processed/natural_images.pkl models/mlp.keras
+make train
 ```
 
 - Predict an image using the trained model
 ``` shell
-python src/models/predict_model.py <image_path> models/mlp.keras
+make predict img='/path/to/image'
 ```
 
 - Visualize the trained model
 ``` shell
-python src/visualization/visualize.py models/mlp.keras
+make visualization
 ```
 
 # Mlflow
