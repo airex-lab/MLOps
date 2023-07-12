@@ -39,7 +39,7 @@ train:
 
 ## Predict from Model
 predict: 
-	$(PYTHON_INTERPRETER) src/models/predict_model.py data/interim/natural_images/car/car_0000.jpg models/mlp.keras
+	$(PYTHON_INTERPRETER) src/models/predict_model.py $(img) models/mlp.keras
 
 ## Visualize Model
 visualize: 
