@@ -27,7 +27,23 @@ requirements: test_environment
 
 ## Make Dataset
 data: requirements
-	$(PYTHON_INTERPRETER) src/data/make_dataset.py data/raw data/processed
+	$(PYTHON_INTERPRETER) src/data/make_dataset.py data/raw/natural_images.zip data/interim
+
+## Process Dataset
+process: data
+	$(PYTHON_INTERPRETER) src/features/build_features.py data/interim/natural_images data/processed/natural_images.pkl
+
+## Train Model
+train: 
+	$(PYTHON_INTERPRETER) src/models/train_model.py data/processed/natural_images.pkl models/mlp.keras
+
+## Predict from Model
+predict: 
+	$(PYTHON_INTERPRETER) src/models/predict_model.py data/interim/natural_images/car/car_0000.jpg models/mlp.keras
+
+## Visualize Model
+visualize: 
+	$(PYTHON_INTERPRETER) src/visualization/visualize.py models/mlp.keras reports
 
 ## Delete all compiled Python files
 clean:
@@ -37,6 +53,10 @@ clean:
 ## Lint using flake8
 lint:
 	flake8 src
+
+## Test using pytest
+test:
+	pytest tests
 
 ## Upload Data to S3
 sync_data_to_s3:

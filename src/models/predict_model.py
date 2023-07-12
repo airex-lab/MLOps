@@ -8,6 +8,7 @@ from tensorflow import keras
 import os
 from PIL import Image
 
+
 @click.command()
 @click.argument('image_filepath', type=click.Path(exists=True))
 @click.argument('model_filepath', type=click.Path())
@@ -21,12 +22,15 @@ def main(image_filepath, model_filepath):
         logger.error('image_filepath does not exist')
         return
 
-    image = np.array([Image.open(image_filepath).resize((128, 128)).convert('L')])
+    image = np.array(
+        Image.open(
+            image_filepath
+        ).resize((32, 32))).reshape(1, 32 * 32 * 3)
     model = keras.models.load_model(model_filepath)
-    predictions = np.argmax(model.predict(image), axis=1)
-    
-    labels = map(lambda x: model.labels[x], predictions)
-    print(labels)
+    prediction = np.argmax(model.predict(image), axis=1)
+    labels = ['airplane', 'automobile', 'bird', 'cat', 'deer', 'dog', 'frog',
+              'horse', 'ship', 'truck']
+    print("Prediction: " + labels[prediction[0]])
 
 
 if __name__ == '__main__':

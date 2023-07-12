@@ -4,6 +4,10 @@ import logging
 from pathlib import Path
 from dotenv import find_dotenv, load_dotenv
 from tensorflow import keras
+import pickle
+import matplotlib.pyplot as plt
+import numpy as np
+
 
 @click.command()
 @click.argument('model_filepath', type=click.Path(exists=True))
@@ -17,6 +21,23 @@ def main(model_filepath, report_dirpath):
 
     model = keras.models.load_model(model_filepath)
     print(model.summary())
+
+    with open('reports/history.pkl', 'rb') as f:
+        history = pickle.load(f)
+
+    # plot the training loss and accuracy
+    plt.style.use("ggplot")
+    plt.figure()
+    plt.plot(np.arange(0, 100), history.history["loss"], label="train_loss")
+    plt.plot(np.arange(0, 100), history.history["val_loss"], label="val_loss")
+    plt.plot(np.arange(0, 10), history.history["accuracy"], label="train_acc")
+    plt.plot(np.arange(0, 100), history.history["val_accuracy"], label="val_acc")  # noqa: E501
+    plt.title("Training Loss and Accuracy")
+    plt.xlabel("Epoch #")
+    plt.ylabel("Loss/Accuracy")
+    plt.legend(loc="lower left")
+    plt.savefig(report_dirpath + '/figures/history.png')
+
 
 if __name__ == '__main__':
     log_fmt = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
