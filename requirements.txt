@@ -15,6 +15,7 @@ pytest
 # api requirements
 fastapi
 uvicorn[standard]
+python-multipart
 
 # others
 numpy
