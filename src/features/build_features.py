@@ -9,12 +9,14 @@ import matplotlib.pyplot as plt
 from PIL import Image
 import pickle
 
+
 @click.command()
 @click.argument('input_dirpath', type=click.Path(exists=True))
 @click.argument('output_filepath', type=click.Path())
 def main(input_dirpath, output_filepath):
-    """ Runs data processing scripts to turn interim data from (../../data/interim) into
-        processed data ready to be analyzed (saved in ../../processed).
+    """ Runs data processing scripts to turn interim data
+        from (../../data/interim) into processed data
+        ready to be analyzed (saved in ../../processed).
     """
     logger = logging.getLogger(__name__)
     logger.info('process raw data into data ready for modeling')
@@ -46,6 +48,7 @@ def main(input_dirpath, output_filepath):
     with open(output_filepath, 'wb') as f:
         pickle.dump(data, f)
         print('data saved to %s' % output_filepath)
+
 
 if __name__ == '__main__':
     log_fmt = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
