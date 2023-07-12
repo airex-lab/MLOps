@@ -1,4 +1,6 @@
 [core]
-    remote = storage
+    remote = s3
 ['remote "storage"']
     url = gdrive://1tK6T996PHg51GYhTJUfP2BjebXbWEDMF
+['remote "s3"']
+    url = s3://mlops-stars/mlops
